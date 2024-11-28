@@ -101,6 +101,27 @@ const Perfil = () => {
           alert(err.response.data.msg || 'Erro ao atualizar a senha.');
         }
       };
+      // Função para excluir a conta do usuário
+      const handleDeleteAccount = async () => {
+        const confirmDelete = window.confirm(
+          'ATENÇÃO: Esta ação é irreversível e todos os seus dados serão perdidos. Tem certeza de que deseja excluir sua conta?'
+        );
+      
+        if (confirmDelete) {
+          try {
+            await axios.delete(`${process.env.REACT_APP_API_URL}/users/delete-account`, {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+      
+            alert('Sua conta foi excluída com sucesso.');
+            logout(); // Deslogar o usuário e limpar os dados de autenticação
+            window.location.href = '/'; // Redirecionar para a página inicial
+          } catch (err) {
+            console.error(err);
+            alert(err.response.data.msg || 'Erro ao excluir a conta.');
+          }
+        }
+      };
       
     
       return (
