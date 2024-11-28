@@ -10,6 +10,9 @@ const Register = () => {
   const [senha, setSenha] = useState('');
   const [isPending, setIsPending] = useState(false);
   const [confirmarSenha, setConfirmarSenha] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const [showSenha, setShowSenha] = useState(false);
   const [showConfirmarSenha, setShowConfirmarSenha] = useState(false);
 
   // Função chamada ao submeter o formulário de registro
